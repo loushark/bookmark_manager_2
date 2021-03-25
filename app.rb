@@ -10,12 +10,11 @@ class BookmarksManager < Sinatra::Base
   get '/bookmarks' do
   	@bookmarks = Bookmarks.all
     @new_title = params[:new_title]
-    p @new_title
     erb(:bookmarks)
   end
 
   post '/add_bookmark' do
-   Bookmarks.add(params[:new_bookmark], params[:new_title])
+   Bookmarks.add(url: params[:new_bookmark], title: params[:new_title])
    @new_title = params[:new_title]
    @new_bookmark = Bookmarks.all.last
   #  erb(:add_bookmark)

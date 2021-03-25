@@ -5,7 +5,7 @@ describe Bookmarks do
 		it 'returns all bookmarks' do
 			connection = PG.connect(dbname: 'bookmark_manager_test')
 
-				Bookmarks.add('http://www.makersacademy.com', "Makers")
+			Bookmarks.add('http://www.makersacademy.com', "Makers")
     	    Bookmarks.add('http://www.destroyallsoftware.com', "Random")
     	    Bookmarks.add('http://www.google.com', "Google")
 
