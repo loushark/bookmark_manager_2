@@ -49,9 +49,7 @@ end
   feature 'delete a bookmark'do
     scenario 'user can delete a bookmark' do
       clear_and_pop_db
-      click_button 'delete'
-      fill_in 'title', with: 'Makers'
-      click_button 'delete'
+       first('.bookmark').click_button 'delete'
       expect(page).not_to have_content("Makers")
     end
 end

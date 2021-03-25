@@ -28,11 +28,11 @@ describe Bookmarks do
 
 	 describe '#delete' do
 		it 'deletes an existing bookmark' do
-		  connection = PG.connect(dbname: 'bookmark_manager_test') 
+		  connection = PG.connect(dbname: 'bookmark_manager_test')
 		  Bookmarks.add(url: "http://www.makersacademy.com", title:"Makers")
-		  Bookmarks.delete("Makers")
+		  Bookmarks.delete(deleted_title: "Makers")
 		  bookmarks = Bookmarks.all
-		  expect(bookmarks).to_not include({:title=>"Makers", :url=>"http://www.makersacademy.com"}) 
+		  expect(bookmarks).to_not include({:title=>"Makers", :url=>"http://www.makersacademy.com"})
 		end
 	end
 end

@@ -14,7 +14,7 @@ class Bookmarks
 		else
 			connect = PG.connect :dbname => 'bookmark_manager'
 		end
-        
+
 
 		result = connect.exec "SELECT * FROM bookmarks"
 		result.map do |bookmark|
@@ -33,7 +33,7 @@ class Bookmarks
 		connection.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}');")
 	end
 
-	def self.delete(deleted_title)
+	def self.delete(deleted_title:)
 		if ENV['ENVIRONMENT'] == 'test'
 			connection = PG.connect(dbname: 'bookmark_manager_test')
 		else
