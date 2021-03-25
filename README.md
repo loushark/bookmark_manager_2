@@ -19,12 +19,29 @@ I would like to add a bookmark
 |           |                  |          |
 | bookmarks | add-bookmark     |          |
 |           |                  |          |
-
 - post request to app
 - app adds new bookmark to database
 - database return updated table
 - app reuqests feedback from views
 - views send updated list/message
+
+As a user
+So that i can remove bookmarks from my bookmarks manager
+I would like to delete a bookmark
+
+| class     | responsibilities | colabs   |
+|-----------|------------------|----------|
+|           |                  |          |
+| bookmarks | delete-bookmark  |          |
+|           |                  |          |
+
+- post request to app
+- app deletes bookmark from database
+- database return updated table
+- app requests feedback from views
+- views send updated list/message
+
+
 
 ### To set up the database
 Connect to psql

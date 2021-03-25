@@ -21,6 +21,16 @@ class BookmarksManager < Sinatra::Base
    redirect '/bookmarks'
   end
 
+  post '/delete_bookmark' do
+    @deleted = params[:title]
+    redirect '/delete_bookmark'
+  end
+
+  get '/delete_bookmark' do
+    erb(:delete_bookmark)
+  end
+
+
   # get '/add_bookmark' do
   #   erb(:add_bookmark)
   # end
