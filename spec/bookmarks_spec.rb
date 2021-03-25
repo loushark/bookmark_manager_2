@@ -5,7 +5,7 @@ describe Bookmarks do
 		it 'returns all bookmarks' do
 			connection = PG.connect(dbname: 'bookmark_manager_test')
 
-			Bookmarks.add(url:'http://www.makersacademy.com', title:"Makers")
+		Bookmarks.add(url:'http://www.makersacademy.com', title:"Makers")
     	Bookmarks.add(url:'http://www.destroyallsoftware.com', title:"Random")
     	Bookmarks.add(url:'http://www.google.com', title:"Google")
 
@@ -26,8 +26,13 @@ describe Bookmarks do
 		end
 	end
 
-	# describe '#delete' do
-	# 	it 'deletes an existing bookmark' do
-	#
-	# 	end
+	 describe '#delete' do
+		it 'deletes an existing bookmark' do
+		  connection = PG.connect(dbname: 'bookmark_manager_test') 
+		  Bookmarks.add(url: "http://www.makersacademy.com", title:"Makers")
+		  Bookmarks.delete("Makers")
+		  bookmarks = Bookmarks.all
+		  expect(bookmarks).to_not include({:title=>"Makers", :url=>"http://www.makersacademy.com"}) 
+		end
 	end
+end

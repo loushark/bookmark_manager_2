@@ -13,6 +13,10 @@ class BookmarksManager < Sinatra::Base
     erb(:bookmarks)
   end
 
+  post '/bookmarks' do
+    redirect '/bookmarks'
+  end
+
   post '/add_bookmark' do
    Bookmarks.add(url: params[:new_bookmark], title: params[:new_title])
    @new_title = params[:new_title]
@@ -29,11 +33,6 @@ class BookmarksManager < Sinatra::Base
   get '/delete_bookmark' do
     erb(:delete_bookmark)
   end
-
-
-  # get '/add_bookmark' do
-  #   erb(:add_bookmark)
-  # end
 
   run! if app_file == $0
 end
