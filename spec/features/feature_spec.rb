@@ -46,7 +46,7 @@ end
     end
   end
 
-  feature 'delete a bookmark'do
+  feature 'delete a bookmark' do
     scenario 'user can delete a bookmark' do
       clear_and_pop_db
        first('.bookmark').click_button 'delete'

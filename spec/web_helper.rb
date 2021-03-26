@@ -1,9 +1,9 @@
 def clear_and_pop_db
   connection = PG.connect(dbname: 'bookmark_manager_test')
 
-  Bookmarks.add(url:'http://www.makersacademy.com', title:"Makers")
-  Bookmarks.add(url:'http://www.destroyallsoftware.com', title:"Random")
-  Bookmarks.add(url:'http://www.google.com', title:"Google")
+  Bookmark.add(url:'http://www.makersacademy.com', title:"Makers")
+  Bookmark.add(url:'http://www.destroyallsoftware.com', title:"Random")
+  Bookmark.add(url:'http://www.google.com', title:"Google")
 
 
  visit '/bookmarks'

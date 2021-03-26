@@ -1,38 +1,46 @@
 require 'bookmarks.rb'
+require 'database_helpers'
 
-describe Bookmarks do
+describe Bookmark do
+
 	describe '.all' do
 		it 'returns all bookmarks' do
 			connection = PG.connect(dbname: 'bookmark_manager_test')
 
-		Bookmarks.add(url:'http://www.makersacademy.com', title:"Makers")
-    	Bookmarks.add(url:'http://www.destroyallsoftware.com', title:"Random")
-    	Bookmarks.add(url:'http://www.google.com', title:"Google")
+   bookmark = Bookmark.add(url: "http://www.makersacademy.com", title: "Makers Academy")
+   Bookmark.add(url: "http://www.destroyallsoftware.com", title: "Destroy All Software")
+   Bookmark.add(url: "http://www.google.com", title: "Google")
 
-			bookmarks = Bookmarks.all
+   bookmarks = Bookmark.all
 
-			expect(bookmarks).to include({:title=>"Makers", :url=>"http://www.makersacademy.com"})
-			expect(bookmarks).to include({:title=>"Random", :url=>"http://www.destroyallsoftware.com"})
-			expect(bookmarks).to include({:title=>"Google", :url=>"http://www.google.com"})
+   expect(bookmarks.length).to eq 3
+   expect(bookmarks.first).to be_a Bookmark
+   expect(bookmarks.first.id).to eq bookmark.id
+   expect(bookmarks.first.title).to eq 'Makers Academy'
+   expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
 		end
+end
+
+		describe '.create' do
+			it 'creates a new bookmark' do
+	    bookmark = Bookmark.add(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
+	    persisted_data = persisted_data(id: bookmark.id)
+
+	    expect(bookmark).to be_a Bookmark
+	    expect(bookmark.id).to eq persisted_data['id']
+	    expect(bookmark.title).to eq 'Test Bookmark'
+	    expect(bookmark.url).to eq 'http://www.testbookmark.com'
+	  end
 	end
 
-	describe '#add' do
-		it 'add new bookmark to database'  do
-			connection = PG.connect(dbname: 'bookmark_manager_test')
-			Bookmarks.add(url: "http://www.makersacademy.com", title:"Makers")
-			bookmarks = Bookmarks.all
-			expect(bookmarks).to include({:title=>"Makers", :url=>"http://www.makersacademy.com"})
-		end
-	end
-
-	 describe '#delete' do
+	describe '#delete' do
 		it 'deletes an existing bookmark' do
-		  connection = PG.connect(dbname: 'bookmark_manager_test')
-		  Bookmarks.add(url: "http://www.makersacademy.com", title:"Makers")
-		  Bookmarks.delete(deleted_title: "Makers")
-		  bookmarks = Bookmarks.all
-		  expect(bookmarks).to_not include({:title=>"Makers", :url=>"http://www.makersacademy.com"})
+			bookmark = Bookmark.add(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+
+    Bookmark.delete(id: bookmark.id)
+
+    expect(Bookmark.all.length).to eq 0
 		end
-	end
+end
+
 end
