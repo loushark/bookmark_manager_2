@@ -34,12 +34,27 @@ I would like to delete a bookmark
 |           |                  |          |
 | bookmarks | delete-bookmark  |          |
 |           |                  |          |
-
 - post request to app
 - app deletes bookmark from database
 - database return updated table
 - app requests feedback from views
 - views send updated list/message
+
+
+As a user
+So that i can change my bookmarks
+I would like to update a bookmark
+
+| class     | responsibilities | colabs   |
+|-----------|------------------|----------|
+|           |                  |          |
+| bookmarks | update-bookmark  |          |
+|           |                  |          |
+
+- feature test > update bookmark
+click button update >
+
+
 
 
 
@@ -62,9 +77,5 @@ Run the query we have saved in the file 01_create_bookmarks_table.sql
 
 ## Current project status
 
-- 2 RSPEC tests failing due to the bookmarks only diplaying the url
-- could change the result.map in bookmarks.all to display the title but would need to change tests
-- Also need to look at initializing :id and :url
-- Also need to href the url to make it a clickable link
-- Go back overstep 10 walkthrouh and implement missing features
-- Go through step 11 walkthrough and implement missing features
+- all tests passing
+- next step: 13 - update bookmarks

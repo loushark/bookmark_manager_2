@@ -52,4 +52,16 @@ end
        first('.bookmark').click_button 'delete'
       expect(page).not_to have_content("Makers")
     end
-end
+  end
+
+  feature 'update a bookmark' do
+    scenario 'user can update a bookmark' do
+      clear_and_pop_db
+      first('.bookmark').click_button 'update'
+      fill_in 'update_url', with: 'https://http.cat'
+      fill_in 'update_title', with: 'http cats'
+      click_button 'update'
+      expect(page).not_to have_content("Makers")
+      expect(page).to have_content("http cats")
+    end
+  end

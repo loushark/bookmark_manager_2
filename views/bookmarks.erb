@@ -7,9 +7,14 @@
   <a href= <%=bookmark.url%> >
     <%=bookmark.title%>
   </a>
+  <br>
 <form action="/bookmarks/<%=bookmark.id%>" method="post">
   <input type='hidden' name='_method' value='DELETE'/>
   <input type="submit" name='delete' value='delete'>
+</form>
+<br>
+<form action="/bookmarks/<%=bookmark.id%>/update_bookmark" method="get">
+  <input type="submit" name='update' value='update'>
 </form>
 </li>
 <% end %>
