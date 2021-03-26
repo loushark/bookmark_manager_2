@@ -41,6 +41,22 @@ end
 
     expect(Bookmark.all.length).to eq 0
 		end
-end
+	end
 
+	describe '.update' do
+		it 'updates a bookmark entry' do
+			connection = PG.connect(dbname: 'bookmark_manager_test')
+			bookmark = Bookmark.add(url: "http://www.makersacademy.com", title: "Makers")
+			persisted_data = persisted_data(id: bookmark.id)
+			# results = connection.exec("SELECT * FROM bookmarks")
+			# array = []
+			# results.map { |bookmark| array << bookmark }
+			# puts array #{"id"=>"44", "url"=>"http://www.makersacademy.com", "title"=>"Makers"}
+
+			Bookmark.update(persisted_data['id'],"http://www.makersacademy.com", 'Makers Academy')
+			expect(connection.exec("SELECT * FROM bookmarks WHERE id='#{persisted_data['id']}'").first['title']).to eq 'Makers Academy'
+
+
+		end
+	end
 end
